@@ -14,3 +14,8 @@ jsg.load('scripts/covas/scroll_view.coffee')
 
 jsg.load('scripts/covas/node_touch.coffee')
 jsg.load('scripts/covas/anim.coffee')
+
+jsg.ready((width, height) ->
+  jsg.stage = new Stage(width, height)
+  jsg.tick(jsg.stage.onTick)
+)

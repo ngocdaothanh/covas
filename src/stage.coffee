@@ -37,27 +37,11 @@ class Stage
     @scaleX = @width  / Stage.STANDARD_WIDTH
     @scaleY = @height / Stage.STANDARD_HEIGHT
 
-  onFrame: (touchActions, touchXs, touchYs) ->
+  onTick: (dt, t) =>
     try
       activeSceneIndex = @scenes.length - 1
       return if activeSceneIndex < 0
 
-      if touchActions?
-        length = touchActions.length
-        for i in [0...length]
-          action = touchActions[i]
-          x      = touchXs[i]
-          y      = touchYs[i]
-          if action == 0
-            jsg.touch.fireDown(x, y)
-          else if action == 1
-            jsg.touch.fireMove(x, y)
-          else if action == 2
-            jsg.touch.fireUp(x, y)
-          else
-            jsg.touch.fireTap(x, y)
-
-      [dt, t] = jsg.fireTick()
       TWEEN.update(t)
 
       for i in [0..activeSceneIndex]
