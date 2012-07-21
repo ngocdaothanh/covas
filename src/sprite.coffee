@@ -6,7 +6,7 @@ class Sprite extends Node
     super()  # @contentWidth and @contentHeight are set to 0 here
     @contentWidth       = canvasWidth
     @contentHeight      = canvasHeight
-    [@canvas, @context] = Sprite.createCanvasAndContext(canvasWidth, canvasHeight)
+    [@canvas, @context] = jsg.createCanvasAndContext(canvasWidth, canvasHeight)
     @content            = @canvas
 
   # args:
@@ -56,21 +56,3 @@ class Sprite extends Node
   updateImageFit: (imageOrImageSrc, keepRatio = false) ->
     @clear()
     @drawImageFit(imageOrImageSrc, keepRatio)
-
-#-------------------------------------------------------------------------------
-
-# Put here, not in Sprite's constructor, so that Stage can use
-Sprite.createCanvasAndContext = (width, height) ->
-  canvas  = new Canvas(width, height)
-  context = new Context2d(canvas)
-
-  # See Canvas.prototype.getContext in canvas.js
-  canvas._context2d = context
-  context.canvas    = canvas
-
-  # https://github.com/LearnBoost/node-canvas
-  # Antialias settings other than 'none' give slow/inaccurate result on Android
-  context.antialias      = 'none'
-  context.patternQuality = 'fast'
-
-  [canvas, context]

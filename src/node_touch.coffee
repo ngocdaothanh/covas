@@ -1,3 +1,6 @@
+# Normally games should not use jsg.touch directly.
+# Use Node#touch instead because it's easier and more effective.
+#
 # Events are not fired for a Node if its width or height is 0,
 # it or its parent is not on stage, invisible, or inactive.
 class NodeTouch

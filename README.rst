@@ -1,2 +1,2 @@
-Covas = Cocos2d + Canvas, a JavaScript game library designed for JSG
-with some flavor from Cocos2d.
+Covas = Cocos2d + HTML5 canvas, a JavaScript game library designed for JSG
+with some flavor of Cocos2d.

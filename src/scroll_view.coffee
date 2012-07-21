@@ -4,7 +4,7 @@ class ScrollView extends Node
     super()  # @contentWidth and @contentHeight are set to 0 here
     @contentWidth       = contentWidth
     @contentHeight      = contentHeight
-    [@canvas, @context] = Sprite.createCanvasAndContext(ScrollView.SCROLLBAR_WIDTH, contentHeight)
+    [@canvas, @context] = jsg.createCanvasAndContext(ScrollView.SCROLLBAR_WIDTH, contentHeight)
     @content            = @canvas
 
     @scrollbarAlpha = 0.0

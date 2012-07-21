@@ -110,7 +110,8 @@ class Node
 
   remove: (child) ->
     if child.parent == this
-      @children = _.without(@children, child)
+      idx = @children.indexOf(child)
+      @children.splice(i, 1) if idx != -1
       child.parent = null
     else
       console.log 'Node#remove warning: wrong parent'
