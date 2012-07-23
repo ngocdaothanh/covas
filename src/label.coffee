@@ -12,7 +12,7 @@ class Label extends Sprite
   updateCanvas: ->
     if @_text?
       if @_text.length > 0
-        jsgDrawLabel(
+        jsg.drawLabel(
           @canvas,
           @_fontName, @_fontSize,
           @_text, @_textColor, @_alignx, @_aligny)

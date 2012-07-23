@@ -111,7 +111,7 @@ class Node
   remove: (child) ->
     if child.parent == this
       idx = @children.indexOf(child)
-      @children.splice(i, 1) if idx != -1
+      @children.splice(idx, 1) if idx != -1
       child.parent = null
     else
       console.log 'Node#remove warning: wrong parent'
@@ -130,8 +130,8 @@ class Node
     if @parent?
       # Move to back so that this child is drawn last
       children = @parent.children
-      index    = children.indexOf(this)
-      children.splice(index, 1)
+      idx      = children.indexOf(this)
+      children.splice(idx, 1)
       children.push(this)
 
   #-----------------------------------------------------------------------------
