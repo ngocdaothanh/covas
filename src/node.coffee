@@ -100,6 +100,7 @@ class Node
     else
       @children.push(child)
       child.parent = this
+    this
 
   addFirst: (child) ->
     if child.parent?
@@ -107,6 +108,7 @@ class Node
     else
       @children.unshift(child)
       child.parent = this
+    this
 
   remove: (child) ->
     if child.parent == this
@@ -115,16 +117,19 @@ class Node
       child.parent = null
     else
       console.log 'Node#remove warning: wrong parent'
+    this
 
   removeAll: ->
     for c in @children
       c.parent = null
     @children = []
+    this
 
   #-----------------------------------------------------------------------------
 
   hide: ->
     @parent.remove(this) if @parent?
+    this
 
   bringToFront: ->
     if @parent?
@@ -133,20 +138,24 @@ class Node
       idx      = children.indexOf(this)
       children.splice(idx, 1)
       children.push(this)
+    this
 
   #-----------------------------------------------------------------------------
 
   prescale: ->
     @prescaleX = jsg.stage.scaleX
     @prescaleY = jsg.stage.scaleY
+    this
 
   prescaleByX: ->
     @prescaleX = jsg.stage.scaleX
     @prescaleY = jsg.stage.scaleX
+    this
 
   prescaleByY: ->
     @prescaleX = jsg.stage.scaleY
     @prescaleY = jsg.stage.scaleY
+    this
 
   # TODO: use deg
   # Returns [x1, y1, x2, y2] in stage (global) coordinates
@@ -168,10 +177,12 @@ class Node
   center: (sizableChild) ->
     sizableChild.x = (@width  - sizableChild.width)  / 2
     sizableChild.y = (@height - sizableChild.height) / 2
+    this
 
   topCenter: (sizableChild) ->
     sizableChild.x = (@width - sizableChild.width) / 2
     sizableChild.y = 0
+    this
 
   #-----------------------------------------------------------------------------
 
@@ -217,6 +228,7 @@ class Node
       accWidth  = @contentWidth  * @prescaleX * accScaleX
       accHeight = @contentHeight * @prescaleY * accScaleY
       jsg.stage.drawToStage(@content, accX, accY, accWidth, accHeight, @offsetX, @offsetY, accDeg)
+    this
 
 #-------------------------------------------------------------------------------
 

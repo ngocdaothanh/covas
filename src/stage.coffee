@@ -52,6 +52,7 @@ class Stage
     catch error
       # http://code.google.com/p/v8/wiki/JavaScriptStackTraceApi
       console.log error.stack
+    null
 
   drawToStage: (imageOrCanvas, x, y, width, height, offsetX, offsetY, deg) ->
     # This may happen when using elastic tweening
