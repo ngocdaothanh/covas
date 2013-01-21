@@ -4,5 +4,7 @@ with some flavor of Cocos2d.
 Build
 =====
 
-coffee -cb -o build src
-cp -R lib build
+::
+
+  coffee -cb -o build src
+  cp -R lib build
