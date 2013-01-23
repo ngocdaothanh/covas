@@ -1,13 +1,24 @@
+# Sprite is a wrapper for canvas, it makes canvas a Node.
+# To reduce memory usage, canvas can be reused.
+# Sprite constructor can be given width height or an existing canvas:
+#   sprite1 = new Sprite(width, height)
+#   sprite2 = new Sprite(existingCanvas)
 class Sprite extends Node
-  constructor: (canvasWidth, canvasHeight) ->
-    if (typeof canvasWidth != 'number') || (typeof canvasHeight != 'number')
-      throw 'canvasWidth and canvasHeight should be numbers'
-
+  constructor: (canvasOrCanvasWidth, canvasHeight) ->
     super()  # @contentWidth and @contentHeight are set to 0 here
-    @contentWidth       = canvasWidth
-    @contentHeight      = canvasHeight
-    [@canvas, @context] = jsg.createCanvasAndContext(canvasWidth, canvasHeight)
-    @content            = @canvas
+
+    if (typeof canvasOrCanvasWidth != 'number')
+      # Reuse an existing canvas
+      @content       = @canvas = canvasOrCanvasWidth
+      @context       = @canvas.context
+      @contentWidth  = @canvas.width
+      @contentHeight = @canvas.height
+    else
+      # Create a new canvas
+      @contentWidth       = canvasOrCanvasWidth
+      @contentHeight      = canvasHeight
+      [@canvas, @context] = jsg.createCanvasAndContext(canvasOrCanvasWidth, canvasHeight)
+      @content            = @canvas
 
   # args:
   #   no arg

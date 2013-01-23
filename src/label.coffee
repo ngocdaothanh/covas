@@ -1,81 +1,34 @@
 # Default alignx: Label.LEFT, aligny: Label.TOP
+#
+# To reduce memory usage, canvas can be reused.
+# Label constructor can be given width height or an existing canvas:
+#   label1 = new Label(width, height)
+#   label2 = new Label(existingCanvas)
 class Label extends Sprite
-  constructor: (canvasWidth, canvasHeight) ->
-    super(canvasWidth, canvasHeight)
-    @_fontName  = null
-    @_fontSize  = 14
-    @_text      = null
-    @_textColor = '#ffffff'
-    @_alignx    = Label.LEFT
-    @_aligny    = Label.TOP
+  constructor: (canvasOrCanvasWidth, canvasHeight) ->
+    super(canvasOrCanvasWidth, canvasHeight)
+    @fontName  = null
+    @fontSize  = 14
+    @text      = null
+    @textColor = '#ffffff'
+    @alignx    = Label.LEFT
+    @aligny    = Label.TOP
+
+  # Called on each frame by #fireDraw, after #update.
+  # Subclasses should override to do their specific drawing.
+  draw: (accX, accY, accScaleX, accScaleY, accDeg) ->
+    @updateCanvas()
+    super(accX, accY, accScaleX, accScaleY, accDeg)
 
   updateCanvas: ->
-    if @_text?
-      if @_text.length > 0
+    if @text?
+      if @text.length > 0
         jsg.drawLabel(
-          @canvas,
-          @_fontName, @_fontSize,
-          @_text, @_textColor, @_alignx, @_aligny)
+          @canvas, @context,
+          @fontName, @fontSize,
+          @text, @textColor, @alignx, @aligny)
       else
         @clear()
-
-#-------------------------------------------------------------------------------
-
-Label.prototype.__defineGetter__('fontName', ->
-  @_fontName
-)
-
-Label.prototype.__defineGetter__('fontSize', ->
-  @_fontSize
-)
-
-Label.prototype.__defineGetter__('text', ->
-  @_text
-)
-
-Label.prototype.__defineGetter__('textColor', ->
-  @_textColor
-)
-
-Label.prototype.__defineGetter__('alignx', ->
-  @_alignx
-)
-
-Label.prototype.__defineGetter__('aligny', ->
-  @_aligny
-)
-
-#-------------------------------------------------------------------------------
-
-Label.prototype.__defineSetter__('fontName', (val) ->
-  @_fontName = val
-  @updateCanvas()
-)
-
-Label.prototype.__defineSetter__('fontSize', (val) ->
-  @_fontSize = val
-  @updateCanvas()
-)
-
-Label.prototype.__defineSetter__('text', (val) ->
-  @_text = val
-  @updateCanvas()
-)
-
-Label.prototype.__defineSetter__('textColor', (val) ->
-  @_textColor = val
-  @updateCanvas()
-)
-
-Label.prototype.__defineSetter__('alignx', (val) ->
-  @_alignx = val
-  @updateCanvas()
-)
-
-Label.prototype.__defineSetter__('aligny', (val) ->
-  @_aligny = val
-  @updateCanvas()
-)
 
 #-------------------------------------------------------------------------------
 

@@ -224,7 +224,7 @@ class Node
   # Subclasses should override to do their specific drawing.
   draw: (accX, accY, accScaleX, accScaleY, accDeg) ->
     if @content?
-      # Here, calculate directly from accScaleX is faster than calculating @accWidth
+      # Here, calculating directly from accScaleX is faster than calculating @accWidth
       accWidth  = @contentWidth  * @prescaleX * accScaleX
       accHeight = @contentHeight * @prescaleY * accScaleY
       jsg.stage.drawToStage(@content, accX, accY, accWidth, accHeight, @offsetX, @offsetY, accDeg)

@@ -14,7 +14,7 @@ class ImageButton extends ImageView
     )
 
   drawImage: ->
-    @setImage(@imgSrc)
+    @setSrc(@imgSrc)
 
   drawImageOn: =>
-    @setImage(@imgOnSrc)
+    @setSrc(@imgOnSrc)
